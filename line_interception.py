@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import random
 
 def generate_paths(xp,yp,vxp,vyp,zd,t):
     #get velocities for the drone to be at the same place as the platform at time t
@@ -23,16 +24,18 @@ def generate_paths(xp,yp,vxp,vyp,zd,t):
     return plat_path,drone_path
 
 #initialise variables
+#units are in meters,seconds or m/s²
 xp = 0.7
 yp = 0.7
 vxp = 0.2
 vyp = 0.1
 zd = 1
-t = 3
 
-#get paths
-platform,drone = generate_paths(xp,yp,vxp,vyp,zd,t)
-#plot
 ax = plt.axes(projection='3d')
-ax.plot(platform[0],platform[1],platform[2])
-ax.plot(drone[0],drone[1],drone[2])
+
+#plot
+for i in range(10):
+    t = random.randint(3,14)
+    platform,drone = generate_paths(xp,yp,vxp,vyp,zd,t)
+    ax.plot(platform[0],platform[1],platform[2])
+    ax.plot(drone[0],drone[1],drone[2])
